@@ -1,9 +1,9 @@
-class Van
+class Garage
 
   def initialize
     @bikes = []
   end
-
+  
   def empty?
     @bikes.empty?
   end
@@ -16,7 +16,7 @@ class Van
     @bikes.delete bike
   end
 
-  def bike_in_van? bike
+  def bike_in_garage? bike
     @bikes.include? bike
   end
 end

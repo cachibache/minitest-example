@@ -36,6 +36,6 @@ class TestVan < MiniTest::Unit::TestCase
     @van << bike3
     refute @van.empty?
     @van.release_bike bike2
-    assert @van.bike2_not_in_van?
+    refute @van.bike_in_van? bike2
   end
 end
