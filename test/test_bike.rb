@@ -17,11 +17,4 @@ class TestBike < MiniTest::Unit::TestCase
     @bike.break!    
     assert @bike.broken?
   end
-
-private
-  
-  def helper
-    raise "whatever"
-  end
-
 end

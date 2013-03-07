@@ -1,6 +1,5 @@
 class Bike
 
-
   def initialize
     @broken = false
   end
@@ -10,7 +9,7 @@ class Bike
   end
 
   def break!
-    @broken = true    
+    @broken = true
   end
 
 end
