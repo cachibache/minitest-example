@@ -41,9 +41,8 @@ class TestGarage < MiniTest::Unit::TestCase
   end
 
   def test_bike_can_fixed
-    assert @garage.empty?
     bike = Bike.new
-    @garage << bike.break!
+    bike.break!
     bike.fix!
     refute bike.broken?
   end
