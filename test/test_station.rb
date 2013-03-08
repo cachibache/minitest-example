@@ -22,11 +22,12 @@ class TestStation < MiniTest::Unit::TestCase
   end
 
   def test_station_can_release_a_bike
-    bike = Bike.new
-    @station << bike
+    10.times { @station << Bike.new }
     refute @station.empty?
-    @station.release_bike(bike)
-    assert @station.empty?
+    bike = @station.bikes[3]
+    released_bike = @station.release_bike bike
+    assert_equal released_bike, bike
+    assert_equal 9, @station.bikes.count
   end
 
   def test_how_many_broken_bikes_station_has
@@ -44,5 +45,12 @@ class TestStation < MiniTest::Unit::TestCase
     @station << bike2
     refute bike1.broken?
     refute_equal 1, @station.broken_bikes.count
+  end
+
+  def test_station_cannot_release_a_bike_it_does_not_have
+    10.times { @station << Bike.new }
+    refute @station.empty?
+    bike = Bike.new
+    assert_raises( RuntimeError ) { @station.release_bike bike }
   end
 end

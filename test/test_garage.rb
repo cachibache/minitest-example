@@ -21,12 +21,13 @@ class TestGarage < MiniTest::Unit::TestCase
     refute @garage.empty?
   end
 
-  def test_garage_can_release_a_bike
-    bike = Bike.new
-    @garage << bike
+  def test_garage_can_release_a_bike    
+    10.times { @garage << Bike.new }
     refute @garage.empty?
-    @garage.release_bike bike
-    assert @garage.empty?
+    bike = @garage.bikes[3]
+    released_bike = @garage.release_bike bike
+    assert_equal released_bike, bike
+    assert_equal 9, @garage.bikes.count
   end
 
   def test_garage_can_release_specific_bike
@@ -37,13 +38,13 @@ class TestGarage < MiniTest::Unit::TestCase
     @garage << bike3
     refute @garage.empty?
     @garage.release_bike bike3
-    refute @garage.bike_in_garage? bike3
+    refute @garage.include? bike3
   end
 
-  def test_bike_can_fixed
+  def test_garage_cannot_release_a_bike_it_does_not_have
+    10.times { @garage << Bike.new }
+    refute @garage.empty?
     bike = Bike.new
-    bike.break!
-    bike.fix!
-    refute bike.broken?
+    assert_raises( RuntimeError ) { @garage.release_bike bike }
   end
 end

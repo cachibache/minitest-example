@@ -16,7 +16,9 @@ class TestPerson < MiniTest::Unit::TestCase
 
   def test_person_can_take_a_bike
     refute @person.has_bike?
-    @person << Bike.new
+    station = 
+    @person.take_bike_from(station)
+    # @person << Bike.new
     assert @person.has_bike?
   end
 

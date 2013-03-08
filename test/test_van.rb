@@ -22,11 +22,12 @@ class TestVan < MiniTest::Unit::TestCase
   end
 
   def test_van_can_release_a_bike
-    bike = Bike.new
-    @van << bike
+    10.times { @van << Bike.new }
     refute @van.empty?
-    @van.release_bike bike
-    assert @van.empty?
+    bike = @van.bikes[4]
+    released_bike = @van.release_bike bike
+    assert_equal released_bike, bike
+    assert_equal 9, @van.bikes.count
   end
 
   def test_van_can_release_specific_bike
@@ -37,6 +38,16 @@ class TestVan < MiniTest::Unit::TestCase
     @van << bike3
     refute @van.empty?
     @van.release_bike bike2
-    refute @van.bike_in_van? bike2
+    refute @van.include? bike2
+  end
+
+  def test_van_cannot_release_a_bike_it_does_not_have
+    10.times { @van << Bike.new }
+    refute @van.empty?
+    bike = Bike.new
+    assert_raises( RuntimeError ) { @van.release_bike bike }
   end
 end
+
+
+

@@ -10,11 +10,20 @@ class TestBike < MiniTest::Unit::TestCase
   end
 
   def test_bike_is_not_broken_by_default
-    assert @bike.broken? == false
+    refute @bike.broken?
   end
 
   def test_bike_can_be_broken
+    refute @bike.broken?
     @bike.break!    
     assert @bike.broken?
+  end
+
+  def test_bike_can_be_fixed    
+    refute @bike.broken?
+    @bike.break!
+    assert @bike.broken?
+    @bike.fix!
+    refute @bike.broken?
   end
 end
