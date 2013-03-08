@@ -1,20 +1,4 @@
-class Garage
-
-  def initialize
-    @bikes = []
-  end
-  
-  def empty?
-    @bikes.empty?
-  end
-
-  def << bike
-    @bikes << bike
-  end
-
-  def release_bike bike
-    @bikes.delete bike
-  end
+class Garage < Location
 
   def bike_in_garage? bike
     @bikes.include? bike
