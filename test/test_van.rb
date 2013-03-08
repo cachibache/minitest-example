@@ -48,6 +48,3 @@ class TestVan < MiniTest::Unit::TestCase
     assert_raises( RuntimeError ) { @van.release_bike bike }
   end
 end
-
-
-
