@@ -17,7 +17,6 @@ class TestPerson < MiniTest::Unit::TestCase
   end
 
   def test_person_can_take_a_bike_from_specific_station
-    refute @person.has_bike?
     station1, station2 = Station.new, Station.new
     bike = Bike.new
     station1 << bike
@@ -27,7 +26,8 @@ class TestPerson < MiniTest::Unit::TestCase
   end
 
   def test_person_can_return_a_bike
-    @person << Bike.new
+    bike = Bike.new
+    @person << bike
     @person.release_bike
     refute @person.has_bike?
   end

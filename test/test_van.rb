@@ -1,4 +1,5 @@
 require './lib/location'
+require './lib/station'
 require './lib/bike'
 require './lib/van' # the class under test
 require 'minitest/autorun' # the minitest itself
@@ -29,6 +30,16 @@ class TestVan < MiniTest::Unit::TestCase
     assert_equal released_bike, bike
     assert_equal 9, @van.bikes.count
   end
+
+  def test_van_can_take_a_bike_from_specific_station
+    station1, station2 = Station.new, Station.new
+    bike = Bike.new
+    station1 << bike
+    assert station1.include? bike
+    @van.take_bike_from(station1)
+    assert @van.include? bike
+  end
+
 
   def test_van_can_release_specific_bike
     assert @van.empty?
