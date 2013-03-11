@@ -6,6 +6,10 @@ class Location
     @bikes = []
   end
 
+  def bikes
+    @bikes
+  end
+
   def empty?
     @bikes.empty?
   end

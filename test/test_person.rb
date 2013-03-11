@@ -27,11 +27,12 @@ class TestPerson < MiniTest::Unit::TestCase
   end
 
   def test_person_can_return_a_bike
-    bike = Bike.new
-    station = Station.new
-    @person.take_bike_from(station)
-    assert @person.has_bike?
-    @person.release_bike bike
+    @person << Bike.new
+    @person.release_bike
     refute @person.has_bike?
+  end
+
+  def test_person_cannot_return_a_bike_he_does_not_have
+
   end
 end

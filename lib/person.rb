@@ -12,7 +12,7 @@ class Person
     @bike = bike
   end
 
-  def release_bike(bike)
+  def release_bike(bike=nil)
     @bike = nil
   end
 
