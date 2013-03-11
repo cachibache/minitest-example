@@ -12,7 +12,8 @@ class Person
     @bike = bike
   end
 
-  def release_bike(bike=nil)
+  def release_bike(bike)
+    raise "No such bike" unless has_bike?
     @bike = nil
   end
 

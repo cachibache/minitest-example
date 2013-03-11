@@ -28,11 +28,13 @@ class TestPerson < MiniTest::Unit::TestCase
   def test_person_can_return_a_bike
     bike = Bike.new
     @person << bike
-    @person.release_bike
+    @person.release_bike bike
     refute @person.has_bike?
   end
 
   def test_person_cannot_return_a_bike_he_does_not_have
-
+    refute @person.has_bike?
+    bike = Bike.new
+    assert_raises( RuntimeError ) { @person.release_bike bike }
   end
 end
