@@ -22,4 +22,10 @@ class Location
   def include?(bike)
     @bikes.include? bike
   end
+
+  def take_bike_from(location)
+    bike = location.bikes.first
+    released_bike = location.release_bike bike
+    self << released_bike
+  end
 end

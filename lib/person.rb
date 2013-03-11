@@ -13,11 +13,13 @@ class Person
   end
 
   def release_bike(bike)
+    raise "No such bike" unless has_bike?
     @bike = nil
   end
 
   def take_bike_from(station)
     bike = station.bikes.first
-    @bike = station.release_bike bike
+    released_bike = station.release_bike bike
+    self << released_bike
   end
 end

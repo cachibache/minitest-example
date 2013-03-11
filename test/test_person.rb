@@ -17,7 +17,6 @@ class TestPerson < MiniTest::Unit::TestCase
   end
 
   def test_person_can_take_a_bike_from_specific_station
-    refute @person.has_bike?
     station1, station2 = Station.new, Station.new
     bike = Bike.new
     station1 << bike
@@ -28,10 +27,14 @@ class TestPerson < MiniTest::Unit::TestCase
 
   def test_person_can_return_a_bike
     bike = Bike.new
-    station = Station.new
-    @person.take_bike_from(station)
-    assert @person.has_bike?
+    @person << bike
     @person.release_bike bike
     refute @person.has_bike?
+  end
+
+  def test_person_cannot_return_a_bike_he_does_not_have
+    refute @person.has_bike?
+    bike = Bike.new
+    assert_raises( RuntimeError ) { @person.release_bike bike }
   end
 end
