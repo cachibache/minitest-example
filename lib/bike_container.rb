@@ -1,12 +1,9 @@
-class Location
+class BikeContainer
 
   attr_reader :bikes
 
-  DEFAULT_CAPACITY = 30
-
-  def initialize(options = {})
-    @capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
-    @bikes = []    
+  def initialize
+    @bikes = []
   end
 
   def empty?
@@ -14,7 +11,6 @@ class Location
   end
 
   def << bike
-    raise "Location full" unless @bikes.length < @capacity
     @bikes << bike
   end
 

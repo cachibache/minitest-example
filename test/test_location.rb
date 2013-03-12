@@ -23,7 +23,7 @@ class TestLocation < MiniTest::Unit::TestCase
     refute @location.empty?
   end
 
-  def test_location_can_release_a_bike    
+  def test_location_can_release_a_bike
     10.times { @location << Bike.new }
     refute @location.empty?
     bike = @location.bikes[3]

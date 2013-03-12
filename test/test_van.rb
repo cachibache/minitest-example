@@ -21,4 +21,12 @@ class TestVan < MiniTest::Unit::TestCase
     @van.take_bike_from(station1)
     assert @van.include? bike
   end
+
+  def test_van_cannot_exceed_max_capacity
+    van = Van.new
+    assert_raises ( RuntimeError ) { 6.times do
+                                       van << Bike.new
+                                     end
+                                     }
+  end
 end

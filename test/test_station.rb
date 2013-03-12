@@ -27,4 +27,12 @@ class TestStation < MiniTest::Unit::TestCase
     refute bike1.broken?
     refute_equal 1, @station.broken_bikes.count
   end
+
+  def test_station_cannot_exceed_max_capacity
+    station = Station.new
+    assert_raises ( RuntimeError ) { 21.times do
+                                       station << Bike.new
+                                     end
+                                     }
+  end
 end
